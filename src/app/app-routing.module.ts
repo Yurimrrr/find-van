@@ -14,6 +14,14 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'inicio',
+    loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioPageModule)
+  },
+  {
+    path: 'vincula-van',
+    loadChildren: () => import('./vincula-van/vincula-van.module').then( m => m.VinculaVanPageModule)
   }
 ];
 

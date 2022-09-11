@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Olá usuário</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-margin">
+    <ion-row class="ion-justify-content-center ion-margin-bottom">
+      <ion-col size="12">
+        <ion-list>
+          <ion-item>
+            <ion-badge slot="start">11</ion-badge>
+            <ion-label>Selecione uma van disponivel</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-grid class="ion-margin">
+              <ion-row class="ion-justify-content-center ion-margin-bottom" *ngFor="let van of vans; let i = index">
+                <ion-col size="12">
+                  <ion-card>
+                    <ion-card-header>
+                      <img src="https://img0.icarros.com/dbimg/imgmodelo/2/699_15.png" alt="">
+                      <ion-card-subtitle>{{van.nome}}</ion-card-subtitle>
+                      <ion-card-title>{{van.bairro}}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                      {{van.descricao}}
+                    </ion-card-content>
+                    <ion-grid >
+                      <ion-row class="ion-justify-content-center">
+                        <ion-col size="12">
+                          <ion-button (click)="entrarNaVan(1)">Entrar na van</ion-button>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-card>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -12,49 +12,28 @@
 <ion-content>
   <ion-grid class="ion-margin">
     <ion-row class="ion-justify-content-center ion-margin-bottom">
-      <ion-col size="2">
-      </ion-col>
       <ion-col size="8">
-        <ion-title>van mt loca</ion-title>
-        <!-- <ion-img [src]="/src/assets/Van-Escolar.png"></ion-img> -->
-      </ion-col>
-      <ion-col size="2">
+        <img src="../../assets/Van-Escolar.png" alt="">
       </ion-col>
     </ion-row>
-    <ion-row class="ion-justify-content-center ion-margin-bottom">
-      <ion-col size="2">
-      </ion-col>
-      <ion-col size="8">
+    <ion-list>
+      <ion-item>
+        <ion-badge slot="start"><ion-icon name="person-outline"></ion-icon></ion-badge>
         <ion-input placeholder="Insira nome de usuario"></ion-input>
-      </ion-col>
-      <ion-col size="2">
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-justify-content-center ">
-      <ion-col size="2">
-      </ion-col>
-      <ion-col size="8">
+      </ion-item>
+      <ion-item>
+        <ion-badge slot="start"><ion-icon name="lock-closed-outline"></ion-icon></ion-badge>
         <ion-input fill="solid" placeholder="Insira sua senha"></ion-input>
-      </ion-col>
-      <ion-col size="2">
-      </ion-col>
-    </ion-row>
+      </ion-item>
+    </ion-list>
     <ion-row class="ion-justify-content-center">
-      <ion-col size="2">
-      </ion-col>
       <ion-col size="8">
-        <ion-button expand="block" color="warning">Entrar</ion-button>
-      </ion-col>
-      <ion-col size="2">
+        <ion-button expand="block" color="primary" (click)="openModal()">Entrar</ion-button>
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-center ">
-      <ion-col size="2">
-      </ion-col>
       <ion-col size="8" class="ion-align-self-center">
-        <ion-button size="small" expand="block"  color="secondary">Esqueci minha senha</ion-button>
-      </ion-col>
-      <ion-col size="2">
+        <ion-button size="small" expand="block"  color="warning">Esqueci minha senha</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
