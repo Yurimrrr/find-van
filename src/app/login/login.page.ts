@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { LoginModalComponent } from './login-modal/login-modal.component';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-login',
@@ -9,8 +11,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  user = "";
+  password = "";
+  isEscondeSenha: boolean;
 
-  constructor(private modalCtrl: ModalController, private route: Router) { }
+
+  constructor(
+    private modalCtrl: ModalController, 
+    private route: Router,
+    private alertController: AlertController) { }
 
   ngOnInit() {
   }
@@ -29,6 +38,29 @@ export class LoginPage implements OnInit {
       //enviar o usuario para o login.
       // this.message = `Hello, ${data}!`;
     }
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Alerta!',
+      message: 'Preencha todos os campos!',
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
+
+  checkCampos(){
+    if(this.user != "" && this.password != ""){
+      this.openModal();
+    }else{
+      this.presentAlert();
+    }
+
+  }
+
+  escondeSenha(){
+    this.isEscondeSenha = !this.isEscondeSenha;
   }
 
 }

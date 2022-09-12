@@ -1,40 +1,51 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-grid fixed>
-      <ion-row>
-        <ion-col size="6" class="ion-align-self-start"><ion-title>Find Van - Login</ion-title></ion-col>
-        <ion-col size="6" class="ion-align-self-end"><ion-title>Cadastrar</ion-title></ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-grid fixed>
+            <ion-row>
+                <ion-col size="12" class="ion-align-self-start">
+                    <ion-title>Find Van - Login</ion-title>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid class="ion-margin">
-    <ion-row class="ion-justify-content-center ion-margin-bottom">
-      <ion-col size="8">
-        <img src="../../assets/Van-Escolar.png" alt="">
-      </ion-col>
-    </ion-row>
-    <ion-list>
-      <ion-item>
-        <ion-badge slot="start"><ion-icon name="person-outline"></ion-icon></ion-badge>
-        <ion-input placeholder="Insira nome de usuario"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-badge slot="start"><ion-icon name="lock-closed-outline"></ion-icon></ion-badge>
-        <ion-input fill="solid" placeholder="Insira sua senha"></ion-input>
-      </ion-item>
-    </ion-list>
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="8">
-        <ion-button expand="block" color="primary" (click)="openModal()">Entrar</ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-justify-content-center ">
-      <ion-col size="8" class="ion-align-self-center">
-        <ion-button size="small" expand="block"  color="warning">Esqueci minha senha</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-grid class="ion-margin">
+        <ion-row class="ion-justify-content-center ion-margin-bottom">
+            <ion-col size="8">
+                <img src="../../assets/Van-Escolar.png" alt="">
+            </ion-col>
+        </ion-row>
+        <ion-list>
+            <ion-item>
+                <ion-badge slot="start">
+                    <ion-icon name="person-outline"></ion-icon>
+                </ion-badge>
+                <ion-input [(ngModel)]="user" placeholder="Insira nome de usuario"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-badge slot="start">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                </ion-badge>
+                <ion-input [type]="isEscondeSenha ? 'text' : 'password'" [(ngModel)]="password" fill="solid" placeholder="Insira sua senha"></ion-input>
+                <ion-badge slot="end">
+                    <ion-icon (click)="escondeSenha()" [name]="isEscondeSenha ? 'eye-off' : 'eye'"></ion-icon>
+                </ion-badge>
+            </ion-item>
+        </ion-list>
+        <ion-row class="ion-justify-content-center">
+            <ion-col size="12">
+                <ion-button expand="block" color="primary" (click)="checkCampos()">Entrar</ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center ">
+            <ion-col size="6" class="ion-align-self-center">
+                <ion-button size="block" expand="block" color="success">Cadastrar</ion-button>
+            </ion-col>
+            <ion-col size="6" class="ion-align-self-center">
+                <ion-button size="block" expand="block" color="warning">Esqueci minha senha</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
