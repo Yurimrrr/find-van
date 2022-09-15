@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonModal, ModalController } from '@ionic/angular';
 import { LoginModalComponent } from './login-modal/login-modal.component';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -11,6 +11,13 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  @ViewChild(IonModal) modal: IonModal;
+  name: string;
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+
+
   user = "";
   password = "";
   isEscondeSenha: boolean;

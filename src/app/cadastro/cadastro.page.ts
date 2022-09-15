@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core/components';  
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.page.html',
