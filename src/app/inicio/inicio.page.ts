@@ -9,52 +9,27 @@ import { Van } from './../entities/vans.model';
   styleUrls: ['./inicio.page.scss'],
 })
 export class InicioPage implements OnInit {
-  public vans: Van = new Van();  
 
-  public van:Van[] = [
-    { id: 1,
-      nome: 'Van cabulosa',
-      bairro: 'Pampulha',
-      descricao: 'Van atende somente no horario da noite',
-      foto:'./../../assets/img/van1.png' },
-
-    { id: 2, 
-      nome: 'Van doida',
-      bairro: 'Barreiro',
-      descricao: 'Van atende nos dois horarios',
-      foto:'./../../assets/img/van2.png'},  
-
-    { id: 3, 
-      nome: 'Van guilherme',
-      bairro: 'Ibirite',
-      descricao: 'Van atende nos dois horarios',
-      foto:'./../../assets/img/van3.png' },
-      
-
-    { id: 4,
-      nome: 'Van yuri',
-      bairro: 'Venda nova',
-      descricao: 'Van atende nos dois horarios',
-      foto:'./../../assets/img/van1.png' },
-
-    { id: 5,
-      nome: 'Van cleitinhos',
-      bairro: 'Dona Clara',
-      descricao: 'Van atende nos dois horarios',
-      foto:'./../../assets/img/Van-Escolar.png' },
-
-   
-    { id: 6,
-      nome: 'Van fuchs',
-      bairro: 'Sagrada Familia',
-      descricao: 'Van atende nos dois horarios',
-      foto:'./../../assets/img/vanConnect.png' }
-  
+  public vans: Array<Van> = [
+    new Van(1, "Van cabulosa", "Pampulha", "Van atende somente no horario da noite", "./../../assets/img/van1.png"),
+    new Van(2, "Van doida", "Barreiro", "Van atende somente no horario da noite", "./../../assets/img/van2.png"),
+    new Van(3, "Van guilherme", "Ibirite", "Van atende somente no horario da noite", "./../../assets/img/van3.png"),
+    new Van(4, "Van yuri", "Venda nova", "Van atende somente no horario da noite", "./../../assets/img/van1.png"),
+    new Van(5, "Van cleitinhos", "Dona Clara", "Van atende somente no horario da noite", "./../../assets/img/Van-Escolar.png"),
+    new Van(6, "Van fuchs", "Sagrada Familia", "Van atende somente no horario da noite", "./../../assets/img/vanConnect.png"),
   ];
+
+  public results = [...this.vans];
 
   constructor(private route: Router) { }
 
   ngOnInit() {
+    console.log(this.vans)
+  }
+
+  handleChange(event) {
+    const query = event.target.value.toLowerCase();
+    this.results = this.vans.filter(d => d.bairro.toLowerCase().indexOf(query) > -1);
   }
 
   //arrumar isso dps big integer parece não ser serto
