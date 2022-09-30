@@ -1,5 +1,28 @@
-page-background-image{
-    ion-content{
+page-background-image {
+    ion-content {
         background-image: url(../../assets/Van-Escolar.png)
     }
+}
+
+ion-content {
+    --background: #de910b;
+    p {
+        font-size: 0.75rem;
+        font-weight: 300;
+        line-height: 25px
+    }
+}
+
+#title-cadastro {
+    margin-bottom: 25px;
+    font-family: Inter !important;
+    font-weight: 700;
+}
+
+#img-van {
+    position: absolute;
+    width: 100%;
+    /* height: 190px; */
+    left: -101px;
+    bottom: -110px;
 }

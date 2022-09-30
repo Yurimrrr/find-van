@@ -6,6 +6,5 @@ export class Van {
                 public bairro?: string  ,
                 public descricao?: string,
                 public foto?: string) {
-
     }
 }
