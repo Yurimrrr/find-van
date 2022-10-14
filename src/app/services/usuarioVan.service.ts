@@ -1,20 +1,24 @@
 import { Injectable } from '@angular/core';
 import { UsuarioVan } from '../entities/usuarioVan.model';
+import { VanService } from './van.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioVanService {
 
-  constructor(private usuario: UsuarioVan) { }
+  constructor(
+    private usuario: UsuarioVan,
+    private vanServ: VanService
+    ) { }
 
   usuarios : Array<UsuarioVan>;
 
-  private getAllJogadores(): Array<UsuarioVan> {
+  public getAllJogadores(): Array<UsuarioVan> {
     return this.usuarios;
   }
 
-  private getUsuarioVanById(id: number): UsuarioVan{
+  public getUsuarioVanById(id: number): UsuarioVan{
     const usuarioEncontrado = this.usuarios.find(obj => obj.id === id);
 
     if (!usuarioEncontrado) {
@@ -23,8 +27,12 @@ export class UsuarioVanService {
     return usuarioEncontrado;
   }
 
-  private insertUsuarioVan(usuarioDto: UsuarioVan): void {
+  public insertUsuarioVan(usuarioDto: UsuarioVan): void {
+    const { van } = this.usuario;
     const { email } = usuarioDto;
+
+    this.vanServ.insertVan(van);
+
     const usuarioEncontrado = this.usuarios.find(obj => obj.email === email);
 
     if (usuarioEncontrado) {
@@ -34,7 +42,7 @@ export class UsuarioVanService {
     const jogadorCriado = this.usuarios.push(usuarioDto);
   }
 
-  private updateUsuarioVan(usuarioDto: UsuarioVan): void{
+  public updateUsuarioVan(usuarioDto: UsuarioVan): void{
 
     let usuarioEncontrado = this.usuarios.find(obj => obj.id === usuarioDto.id);
 
@@ -46,7 +54,7 @@ export class UsuarioVanService {
 
   }
 
-  private deleteVan(id: number): void {
+  public deleteVan(id: number): void {
     // const usuarioEncontrado = this.usuarios.find(obj => obj.id === id);
 
     // if (!usuarioEncontrado) {

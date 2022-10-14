@@ -11,11 +11,11 @@ export class VanService {
 
   vans : Array<Van>;
 
-  private getAllVan(): Array<Van> {
+  public getAllVan(): Array<Van> {
     return this.vans;
   }
 
-  private getVanById(id: number): Van{
+  public getVanById(id: number): Van{
     const vanEncontrado = this.vans.find(obj => obj.id === id);
 
     if (!vanEncontrado) {
@@ -24,7 +24,7 @@ export class VanService {
     return vanEncontrado;
   }
 
-  private insertVan(vanDto: Van): void {
+  public insertVan(vanDto: Van): void {
     const { cnpj } = vanDto;
     const usuarioEncontrado = this.vans.find(obj => obj.cnpj === cnpj);
 
@@ -35,7 +35,7 @@ export class VanService {
     const jogadorCriado = this.vans.push(vanDto);
   }
 
-  private updateVan(vanDto: Van): void{
+  public updateVan(vanDto: Van): void{
 
     let usuarioEncontrado = this.vans.find(obj => obj.id === vanDto.id);
 
@@ -47,7 +47,7 @@ export class VanService {
 
   }
 
-  private deleteVan(id: number): void {
+  public deleteVan(id: number): void {
     // const usuarioEncontrado = this.usuarios.find(obj => obj.id === id);
 
     // if (!usuarioEncontrado) {
