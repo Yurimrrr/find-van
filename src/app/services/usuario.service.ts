@@ -10,11 +10,11 @@ export class UsuarioService {
 
   usuarios : Array<Usuario>;
 
-  private getAllJogadores(): Array<Usuario> {
+  public getAllJogadores(): Array<Usuario> {
     return this.usuarios;
   }
 
-  private getUsuarioById(id: number): Usuario{
+  public getUsuarioById(id: number): Usuario{
     const usuarioEncontrado = this.usuarios.find(obj => obj.id === id);
 
     if (!usuarioEncontrado) {
@@ -23,7 +23,7 @@ export class UsuarioService {
     return usuarioEncontrado;
   }
 
-  private insertUsuario(usuarioDto: Usuario): void {
+  public insertUsuario(usuarioDto: Usuario): void {
     const { email } = usuarioDto;
     const usuarioEncontrado = this.usuarios.find(obj => obj.email === email);
 
@@ -34,7 +34,7 @@ export class UsuarioService {
     const jogadorCriado = this.usuarios.push(usuarioDto);
   }
 
-  private updateUsuario(usuarioDto: Usuario): void{
+  public updateUsuario(usuarioDto: Usuario): void{
 
     let usuarioEncontrado = this.usuarios.find(obj => obj.id === usuarioDto.id);
 
@@ -46,7 +46,7 @@ export class UsuarioService {
 
   }
 
-  private deleteVan(id: number): void {
+  public deleteVan(id: number): void {
     // const usuarioEncontrado = this.usuarios.find(obj => obj.id === id);
 
     // if (!usuarioEncontrado) {
