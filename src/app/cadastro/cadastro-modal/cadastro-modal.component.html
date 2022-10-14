@@ -10,27 +10,52 @@
   <ion-item>
                     <ion-label position="stacked"> Digite seu Nome </ion-label>
                     <ion-input type="text" placeholder="Nome" [(ngModel)]="usuario.nome"></ion-input>
-
                     <ion-label position="stacked"> Email </ion-label>
                     <ion-input type="text" placeholder="Email" [(ngModel)]="usuario.email"></ion-input>
-
                     <ion-label position="stacked"> Senha </ion-label>
                     <ion-input [type]="password" [(ngModel)]="usuario.senha" fill="solid" placeholder="Insira sua Senha"></ion-input>
-
+                    <ion-label position="stacked"> CPF </ion-label>
+                    <ion-input [type]="password" [(ngModel)]="usuario.cpf" fill="solid" placeholder="Digite seu cpf"></ion-input>
                     <ion-label position="stacked"> Celular </ion-label>
                     <ion-input type="text" placeholder="Celular" [(ngModel)]="celular"></ion-input>
-
-                    <ion-label position="stacked"> Endereço </ion-label>
-                    <ion-input type="text" placeholder="Endereço" [(ngModel)]="usuario.endereco"></ion-input>
+                    <ion-label position="stacked"> Rua </ion-label>
+                    <ion-input type="text" placeholder="Rua" [(ngModel)]="endereco.rua"></ion-input>
+                    <ion-label position="stacked"> Bairro </ion-label>
+                    <ion-input type="text" placeholder="Bairro" [(ngModel)]="endereco.bairro"></ion-input>
+                    <ion-label position="stacked"> Cidade </ion-label>
+                    <ion-input type="text" placeholder="Cidade" [(ngModel)]="endereco.cidade"></ion-input>
+                    <ion-label position="stacked"> Estado </ion-label>
+                    <ion-input type="text" placeholder="Estado" [(ngModel)]="endereco.estado"></ion-input>
+                    <ion-label position="stacked"> País </ion-label>
+                    <ion-input type="text" placeholder="País" [(ngModel)]="endereco.pais"></ion-input>
 
                     <ion-label position="stacked"> Tipo de conta </ion-label>
-
-                    <ion-select>
-                      <ion-select-option>Usuário</ion-select-option>
-                      <ion-select-option>Van</ion-select-option>
+                    <ion-select [(ngModel)]="type">
+                      <ion-select-option [value]="true">Usuário</ion-select-option>
+                      <ion-select-option [value]="false">Van</ion-select-option>
                     </ion-select>
+
+                    <div class="van" *ngIf="!type">
+                      <ion-label position="stacked"> Nome da Van </ion-label>
+                      <ion-input type="text" placeholder="Digite o nome da van" [(ngModel)]="van.nome"></ion-input>
+                      <ion-label position="stacked"> Cnpj </ion-label>
+                      <ion-input type="text" placeholder="Digite o cnpj" [(ngModel)]="van.cnpj"></ion-input>
+                      <ion-label position="stacked"> Bairro </ion-label>
+                      <ion-input type="text" placeholder="Digite o bairro" [(ngModel)]="van.bairro"></ion-input>
+                      <ion-label position="stacked"> Descrição </ion-label>
+                      <ion-input type="text" placeholder="Digite a descricao" [(ngModel)]="van.descricao"></ion-input>
+                      <ion-label position="stacked"> Foto </ion-label>
+                      <ion-input type="text" placeholder="Insira url da foto(temporario)" [(ngModel)]="van.foto"></ion-input>
+                    </div>
+                    <ion-grid>
+                      <ion-row class="ion-justify-content-center">
+                        <ion-col size="12">
+                            <ion-button expand="expand" color="primary" (click)="cadastrar()">Cadastrar</ion-button>
+                        </ion-col>
+                    </ion-row>
+                    </ion-grid>
                 </ion-item>
 </ion-content>
-                
-                
-                
+
+
+
