@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Usuario } from './entities/usuario.model';
+import { Usuario } from '../entities/usuario.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,6 @@ export class UsuarioService {
 
   usuarios : Array<Usuario>;
 
-  
   private getAllJogadores(): Array<Usuario> {
     return this.usuarios;
   }
@@ -47,7 +46,7 @@ export class UsuarioService {
 
   }
 
-  private deleteJogador(id: number): void {
+  private deleteVan(id: number): void {
     // const usuarioEncontrado = this.usuarios.find(obj => obj.id === id);
 
     // if (!usuarioEncontrado) {
