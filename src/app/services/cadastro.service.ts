@@ -14,7 +14,7 @@ export class CadastroService {
     private usuarioVanServ: UsuarioVanService
     ) { }
 
-    public cadastrar(tipoUsuario: boolean, usuario: Usuario, usuarioVan: UsuarioVan): void{
+public cadastrar(tipoUsuario: boolean, usuario: Usuario, usuarioVan: UsuarioVan): void{
       if(tipoUsuario){
         this.usuarioServ.insertUsuario(usuario);
       }else{
