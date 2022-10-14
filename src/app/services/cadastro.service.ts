@@ -10,11 +10,11 @@ import { UsuarioVanService } from './usuarioVan.service';
 export class CadastroService {
 
   constructor(
-    private usuarioServ: UsuarioService,
-    private usuarioVanServ: UsuarioVanService
     ) { }
-
+    public usuarioServ: UsuarioService
+    public usuarioVanServ: UsuarioVanService
     public cadastrar(tipoUsuario: boolean, usuario: Usuario, usuarioVan: UsuarioVan): void{
+
       if(tipoUsuario){
         this.usuarioServ.insertUsuario(usuario);
       }else{
