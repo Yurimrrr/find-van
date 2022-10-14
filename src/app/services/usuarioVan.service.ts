@@ -1,57 +1,56 @@
 import { Injectable } from '@angular/core';
-import { Usuario } from './entities/usuario.model';
+import { UsuarioVan } from '../entities/usuarioVan.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class UsuarioVanService {
 
-  constructor(private usuario: Usuario) { }
+  constructor(private usuario: UsuarioVan) { }
 
-  usuarios : Array<Usuario>;
+  usuarios : Array<UsuarioVan>;
 
-  
-  private getAllJogadores(): Array<Usuario> {
+  private getAllJogadores(): Array<UsuarioVan> {
     return this.usuarios;
   }
 
-  private getUsuarioById(id: number): Usuario{
+  private getUsuarioVanById(id: number): UsuarioVan{
     const usuarioEncontrado = this.usuarios.find(obj => obj.id === id);
 
     if (!usuarioEncontrado) {
-      console.log("Usuario não encontrado")
+      console.log("UsuarioVan não encontrado")
     }
     return usuarioEncontrado;
   }
 
-  private insertUsuario(usuarioDto: Usuario): void {
+  private insertUsuarioVan(usuarioDto: UsuarioVan): void {
     const { email } = usuarioDto;
     const usuarioEncontrado = this.usuarios.find(obj => obj.email === email);
 
     if (usuarioEncontrado) {
-      console.log(`Usuario com o e-mail ${email} já cadastrado`);
+      console.log(`UsuarioVan com o e-mail ${email} já cadastrado`);
     }
 
     const jogadorCriado = this.usuarios.push(usuarioDto);
   }
 
-  private updateUsuario(usuarioDto: Usuario): void{
+  private updateUsuarioVan(usuarioDto: UsuarioVan): void{
 
     let usuarioEncontrado = this.usuarios.find(obj => obj.id === usuarioDto.id);
 
     if (!usuarioEncontrado) {
-      console.log("Usuario não encontrado")
+      console.log("UsuarioVan não encontrado")
     }
 
     usuarioEncontrado = usuarioDto;
 
   }
 
-  private deleteJogador(id: number): void {
+  private deleteVan(id: number): void {
     // const usuarioEncontrado = this.usuarios.find(obj => obj.id === id);
 
     // if (!usuarioEncontrado) {
-    //   console.log("Usuario não encontrado")
+    //   console.log("UsuarioVan não encontrado")
     // }
 
   }
