@@ -8,6 +8,7 @@ export class UsuarioEntity {
                 public email?: string,
                 public endereco?: Endereco,
                 public cpf?: string,
+                public senha?: string,
                 public foto?: string) {
     }
 }
