@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { CadastroModalComponent } from './cadastro-modal/cadastro-modal.component';
 import { Usuario } from '../entities/usuario.model';
 import { UsuarioVan } from '../entities/usuarioVan.model';
-import { CadastroService } from '../services/cadastro.service';
 import { Van } from '../entities/vans.model';
 @Component({
   selector: 'app-cadastro',
@@ -33,21 +32,20 @@ export class CadastroPage implements OnInit {
   }
   constructor(
     private modalCtrl: ModalController,
-    private route: Router,
-    private cadastroServ: CadastroService) { }
+    private route: Router) { }
 
   ngOnInit() {
   }
 
-  salvaDados(){
-    //Caso o tipo do usuario for Usuario, só preencher o construtor com os valores da tela.
-    let usuario = new Usuario();
+  // salvaDados(){
+  //   //Caso o tipo do usuario for Usuario, só preencher o construtor com os valores da tela.
+  //   let usuario = new Usuario();
 
-    //se for usuario van preencher com os dados da tela + new Van(dados tela da van)
-    let van = new Van();
-    let usuarioVan = new UsuarioVan(van);
-    this.cadastroServ.cadastrar(this.tipoUsuario, usuario, usuarioVan);
-  }
+  //   //se for usuario van preencher com os dados da tela + new Van(dados tela da van)
+  //   let van = new Van();
+  //   let usuarioVan = new UsuarioVan(van);
+  //   this.cadastroServ.cadastrar(this.tipoUsuario, usuario, usuarioVan);
+  // }
 
   async openModal() {
     const modal = await this.modalCtrl.create({

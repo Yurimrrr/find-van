@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UsuarioVan } from '../entities/usuarioVan.model';
+import { Van } from '../entities/vans.model';
 import { VanService } from './van.service';
 
 @Injectable({
@@ -8,11 +9,10 @@ import { VanService } from './van.service';
 export class UsuarioVanService {
 
   constructor(
-    private usuario: UsuarioVan,
     private vanServ: VanService
     ) { }
 
-  usuarios : Array<UsuarioVan>;
+  usuarios : Array<UsuarioVan> = [];
 
   public getAllJogadores(): Array<UsuarioVan> {
     return this.usuarios;
@@ -28,10 +28,29 @@ export class UsuarioVanService {
   }
 
   public insertUsuarioVan(usuarioDto: UsuarioVan): void {
-    const { van } = this.usuario;
+    const { van } = usuarioDto;
     const { email } = usuarioDto;
 
-    this.vanServ.insertVan(van);
+    const _van = new Van();
+    _van.id = van.id;
+    _van.bairro = van.bairro;
+    _van.cnpj = van.cnpj;
+    _van.descricao = van.descricao;
+    _van.foto = van.foto;
+    _van.nome = van.nome;
+
+    this.vanServ.insertVan(_van);
+
+    const usuario = new UsuarioVan()
+
+    usuario.id = usuarioDto.id;
+    usuario.nome = usuarioDto.nome;
+    usuario.email = usuarioDto.email;
+    usuario.endereco = usuarioDto.endereco;
+    usuario.cpf = usuarioDto.cpf;
+    usuario.senha = usuarioDto.senha;
+    usuario.foto = usuarioDto.foto;
+    usuario.van = _van;
 
     const usuarioEncontrado = this.usuarios.find(obj => obj.email === email);
 
@@ -39,7 +58,7 @@ export class UsuarioVanService {
       console.log(`UsuarioVan com o e-mail ${email} já cadastrado`);
     }
 
-    const jogadorCriado = this.usuarios.push(usuarioDto);
+    const usuarioCriado = this.usuarios.push(usuarioDto);
   }
 
   public updateUsuarioVan(usuarioDto: UsuarioVan): void{

@@ -6,9 +6,9 @@ import { Usuario } from '../entities/usuario.model';
 })
 export class UsuarioService {
 
-  constructor(private usuario: Usuario) { }
+  constructor() { }
 
-  usuarios : Array<Usuario>;
+  private usuarios: Usuario[] = [];
 
   public getAllJogadores(): Array<Usuario> {
     return this.usuarios;
@@ -31,7 +31,19 @@ export class UsuarioService {
       console.log(`Usuario com o e-mail ${email} já cadastrado`);
     }
 
-    const jogadorCriado = this.usuarios.push(usuarioDto);
+    const usuario = new Usuario()
+
+    usuario.id = usuarioDto.id;
+    usuario.nome = usuarioDto.nome;
+    usuario.email = usuarioDto.email;
+    usuario.endereco = usuarioDto.endereco;
+    usuario.cpf = usuarioDto.cpf;
+    usuario.senha = usuarioDto.senha;
+    usuario.foto = usuarioDto.foto;
+
+    console.log(this.usuarios);
+
+    const usuarioCriado = this.usuarios.push(usuario);
   }
 
   public updateUsuario(usuarioDto: Usuario): void{

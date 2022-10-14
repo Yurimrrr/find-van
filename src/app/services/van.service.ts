@@ -7,9 +7,9 @@ import { Van } from '../entities/vans.model';
 export class VanService {
 
 
-  constructor(private van: Van) { }
+  constructor() { }
 
-  vans : Array<Van>;
+  vans : Array<Van> = [];
 
   public getAllVan(): Array<Van> {
     return this.vans;
@@ -32,7 +32,9 @@ export class VanService {
       console.log(`Van com o cnpj ${cnpj} já cadastrado`);
     }
 
-    const jogadorCriado = this.vans.push(vanDto);
+    console.log(this.vans);
+
+    const vanCriada = this.vans.push(vanDto);
   }
 
   public updateVan(vanDto: Van): void{
