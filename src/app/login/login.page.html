@@ -44,8 +44,8 @@
                 <ion-button size="block" expand="block" color="secondary shade" [routerLink]="['/cadastro']" >Cadastrar</ion-button>
             </ion-col>
             <ion-col size="6" class="ion-align-self-center">
-                <ion-button id="open-modal" size="block" expand="block" color="warning">Esqueci minha senha</ion-button>
-                <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+                <ion-button id="modal-esqueciSenha" size="block" expand="block" color="warning">Esqueci minha senha</ion-button>
+                <ion-modal trigger="modal-esqueciSenha" (willDismiss)="onWillDismiss($event)">
                     <ng-template>
                         <ion-header>
                           <ion-toolbar>
