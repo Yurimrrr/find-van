@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Usuario } from '../entities/usuario.model';
 import { Van } from './../entities/vans.model';
 
 
@@ -9,6 +10,7 @@ import { Van } from './../entities/vans.model';
   styleUrls: ['./inicio.page.scss'],
 })
 export class InicioPage implements OnInit {
+
 
   public vans: Array<Van> = [
     new Van(1, "Van cabulosa", "Pampulha", "Van atende somente no horario da noite", "./../../assets/img/van1.png"),
