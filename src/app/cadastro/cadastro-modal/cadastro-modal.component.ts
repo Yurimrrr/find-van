@@ -32,6 +32,7 @@ public usuarioVan: UsuarioVan = new UsuarioVan();
     this.usuario = {
       id: this.usuario.id,
       nome: this.usuario.nome,
+      senha: this.usuario.senha,
       email: this.usuario.email,
       endereco: this.usuario.endereco,
       cpf: this.usuario.cpf,
@@ -39,16 +40,7 @@ public usuarioVan: UsuarioVan = new UsuarioVan();
     }
   }
 
-  public cadastroVanModal(){
-    this.usuarioVan = {
-      id: this.usuarioVan.id,
-      nome: this.usuarioVan.nome,
-      email: this.usuarioVan.email,
-      endereco: this.usuarioVan.endereco,
-      cpf: this.usuarioVan.cpf,
-      foto: this.usuarioVan.foto
-    }
-  }
+
 
 
   confirm(type: boolean) {
