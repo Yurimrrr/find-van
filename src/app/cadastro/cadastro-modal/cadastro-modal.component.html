@@ -8,11 +8,11 @@
 </ion-header>
 <ion-content class="ion-padding">
   <ion-item>
-    <ion-label position="stacked"> Digite seu Nome </ion-label>
-                    <ion-input type="text" placeholder="Nome" [(ngModel)]="nome"></ion-input>
+                    <ion-label position="stacked"> Digite seu Nome </ion-label>
+                    <ion-input type="text" placeholder="Nome" [(ngModel)]="usuario.nome"></ion-input>
 
                     <ion-label position="stacked"> Email </ion-label>
-                    <ion-input type="text" placeholder="Email" [(ngModel)]="email"></ion-input>
+                    <ion-input type="text" placeholder="Email" [(ngModel)]="usuario.email"></ion-input>
 
                     <ion-label position="stacked"> Senha </ion-label>
                     <ion-input [type]="password" [(ngModel)]="password" fill="solid" placeholder="Insira sua Senha"></ion-input>
@@ -21,8 +21,14 @@
                     <ion-input type="text" placeholder="Celular" [(ngModel)]="celular"></ion-input>
 
                     <ion-label position="stacked"> Endereço </ion-label>
-                    <ion-input type="text" placeholder="Endereço"></ion-input>
+                    <ion-input type="text" placeholder="Endereço" [(ngModel)]="usuario.endereço"></ion-input>
 
+                    <ion-label position="stacked"> Tipo de conta </ion-label>
+
+                    <ion-select>
+                      <ion-select-option>Usuário</ion-select-option>
+                      <ion-select-option>Van</ion-select-option>
+                    </ion-select>
                 </ion-item>
 </ion-content>
                 
