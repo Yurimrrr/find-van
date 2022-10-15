@@ -1,60 +1,78 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Van } from '../entities/vans.model';
-
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class VanService {
 
+  url = 'http://localhost:3000/vans';
+  constructor(private httpClient: HttpClient) { }
 
-  constructor() { }
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0'
+    })
+  }
 
   vans : Array<Van> = [];
 
-  public getAllVan(): Array<Van> {
-    return this.vans;
+  public getAllVan(): Observable<Van[]> {
+    return this.httpClient.get<Van[]>(this.url)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
   }
 
-  public getVanById(id: number): Van{
-    const vanEncontrado = this.vans.find(obj => obj.id === id);
+  public getVanById(id: number): Observable<Van>{
+    return this.httpClient.get<Van>(this.url + '/' + id)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
 
-    if (!vanEncontrado) {
-      console.log("Usuario não encontrado")
+  public insertVan(vanDto: Van) {
+    console.log("entrou no insert da van");
+    return this.httpClient.post<Van>(this.url, JSON.stringify(vanDto), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      ).subscribe()
+  }
+
+  public updateVan(vanDto: Van): Observable<Van>{
+    return this.httpClient.put<Van>(this.url + '/' + vanDto.id, JSON.stringify(vanDto), this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
+  public deleteVan(vanDto: Van) {
+    return this.httpClient.delete<Van>(this.url + '/' + vanDto.id, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+  }
+
+  handleError(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Erro ocorreu no lado do client
+      errorMessage = error.error.message;
+    } else {
+      // Erro ocorreu no lado do servidor
+      errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
     }
-    return vanEncontrado;
-  }
-
-  public insertVan(vanDto: Van): void {
-    const { cnpj } = vanDto;
-    const usuarioEncontrado = this.vans.find(obj => obj.cnpj === cnpj);
-
-    if (usuarioEncontrado) {
-      console.log(`Van com o cnpj ${cnpj} já cadastrado`);
-    }
-
-    console.log(this.vans);
-
-    const vanCriada = this.vans.push(vanDto);
-  }
-
-  public updateVan(vanDto: Van): void{
-
-    let usuarioEncontrado = this.vans.find(obj => obj.id === vanDto.id);
-
-    if (!usuarioEncontrado) {
-      console.log("Usuario não encontrado")
-    }
-
-    usuarioEncontrado = vanDto;
-
-  }
-
-  public deleteVan(id: number): void {
-    // const usuarioEncontrado = this.usuarios.find(obj => obj.id === id);
-
-    // if (!usuarioEncontrado) {
-    //   console.log("Usuario não encontrado")
-    // }
-
-  }
+    console.log(errorMessage);
+    return throwError(errorMessage);
+  };
 }

@@ -2,9 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonModal, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { CadastroModalComponent } from './cadastro-modal/cadastro-modal.component';
-import { Usuario } from '../entities/usuario.model';
-import { UsuarioVan } from '../entities/usuarioVan.model';
-import { Van } from '../entities/vans.model';
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.page.html',
