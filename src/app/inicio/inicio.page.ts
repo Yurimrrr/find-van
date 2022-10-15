@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Usuario } from '../entities/usuario.model';
 import { VanService } from '../services/van.service';
 import { Van } from './../entities/vans.model';
@@ -16,14 +17,36 @@ export class InicioPage implements OnInit {
     private vanServ: VanService
     ) { }
 
-  public vans: Array<Van> = this.vanServ.getAllVan();
+  public vans: Array<Van> = [];
 
-  public results = [...this.vans];
+  public results = [];
 
+  loading=true
+
+
+  getVans(){
+    this.vanServ.getAllVan().subscribe((vans: Van[]) => {
+      vans.forEach(element => {
+        let van = new Van(
+          element.id,
+          element.nome,
+          element.cnpj,
+          element.bairro,
+          element.descricao,
+          element.foto
+          )
+        this.vans.push(van)
+      });
+    });
+
+  }
 
   ngOnInit() {
-    console.log(this.vans)
+    this.getVans();
+    this.results = this.vans;
+    console.log(this.results);
   }
+
 
   handleChange(event) {
     const query = event.target.value.toLowerCase();

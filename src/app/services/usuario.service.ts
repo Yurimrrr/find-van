@@ -1,69 +1,116 @@
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { throwError } from 'rxjs/internal/observable/throwError';
+import { catchError, retry } from 'rxjs/operators';
 import { Usuario } from '../entities/usuario.model';
+import { Van } from '../entities/vans.model';
+import { VanService } from './van.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
-  constructor() { }
+  url = 'http://localhost:3000/usuario';
+  constructor(
+    private httpClient: HttpClient,
+    private vanServ: VanService
+  ) { }
 
-  private usuarios: Usuario[] = [];
-
-  public getAllJogadores(): Array<Usuario> {
-    return this.usuarios;
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0'
+    })
   }
 
-  public getUsuarioById(id: number): Usuario{
-    const usuarioEncontrado = this.usuarios.find(obj => obj.id === id);
+  usuarios: Usuario[] = [];
 
-    if (!usuarioEncontrado) {
-      console.log("Usuario não encontrado")
+  public getAllJogadores(): Observable<Usuario[]> {
+    return this.httpClient.get<Usuario[]>(this.url)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  public getUsuarioById(id: number): Observable<Usuario>{
+    return this.httpClient.get<Usuario>(this.url + '/' + id)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  public insertUsuario(usuarioDto: Usuario, type: boolean): void {
+    const { van } = usuarioDto;
+
+    console.log(usuarioDto);
+
+    if(!type){
+      const vanInsert = this.vanServ.insertVan(van)
+
+      console.log("VAN INSERT =========");
+      console.log(vanInsert);
+      console.log("VAN INSERT =========");
+
+      // tem que ver como trasformar subscrible em objeto.
+
+      // const _van = new Van();
+      // vanInsert.toPromise().then(item => {
+      //   _van.id = item.id
+      //   _van.bairro = item.bairro;
+      //   _van.cnpj = item.cnpj;
+      //   _van.descricao = item.descricao;
+      //   _van.foto = item.foto;
+      //   _van.nome = item.nome;
+      // })
+
+      // usuarioDto.van = _van;
     }
-    return usuarioEncontrado;
+    console.log("entrou aq");
+
+    this.httpClient.post<Usuario>(this.url, JSON.stringify(usuarioDto), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      ).subscribe();
   }
 
-  public insertUsuario(usuarioDto: Usuario): void {
-    const { email } = usuarioDto;
-    const usuarioEncontrado = this.usuarios.find(obj => obj.email === email);
+  // public updateUsuario(usuarioDto: Usuario): void{
 
-    if (usuarioEncontrado) {
-      console.log(`Usuario com o e-mail ${email} já cadastrado`);
+  //   let usuarioEncontrado = this.usuarios.find(obj => obj.id === usuarioDto.id);
+
+  //   if (!usuarioEncontrado) {
+  //     console.log("Usuario não encontrado")
+  //   }
+
+  //   usuarioEncontrado = usuarioDto;
+
+  // }
+
+  // public deleteVan(id: number): void {
+  //   // const usuarioEncontrado = this.usuarios.find(obj => obj.id === id);
+
+  //   // if (!usuarioEncontrado) {
+  //   //   console.log("Usuario não encontrado")
+  //   // }
+
+  // }
+
+  handleError(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Erro ocorreu no lado do client
+      errorMessage = error.error.message;
+    } else {
+      // Erro ocorreu no lado do servidor
+      errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
     }
-
-    const usuario = new Usuario()
-
-    usuario.id = usuarioDto.id;
-    usuario.nome = usuarioDto.nome;
-    usuario.email = usuarioDto.email;
-    usuario.endereco = usuarioDto.endereco;
-    usuario.cpf = usuarioDto.cpf;
-    usuario.senha = usuarioDto.senha;
-    usuario.foto = usuarioDto.foto;
-
-    console.log(this.usuarios);
-
-    const usuarioCriado = this.usuarios.push(usuario);
-  }
-
-  public updateUsuario(usuarioDto: Usuario): void{
-
-    let usuarioEncontrado = this.usuarios.find(obj => obj.id === usuarioDto.id);
-
-    if (!usuarioEncontrado) {
-      console.log("Usuario não encontrado")
-    }
-
-    usuarioEncontrado = usuarioDto;
-
-  }
-
-  public deleteVan(id: number): void {
-    // const usuarioEncontrado = this.usuarios.find(obj => obj.id === id);
-
-    // if (!usuarioEncontrado) {
-    //   console.log("Usuario não encontrado")
-    // }
-
-  }
+    console.log(errorMessage);
+    return throwError(errorMessage);
+  };
 }
