@@ -19,25 +19,32 @@ export class InicioPage implements OnInit {
 
   public vans: Array<Van> = [];
 
-  public results = [...this.vans];
+  public results = [];
 
   loading=true
 
 
-  async getVans(){
+  getVans(){
     this.vanServ.getAllVan().subscribe((vans: Van[]) => {
-      this.vans = vans;
-      console.log("GET VANS ========");
-      console.log(this.vans);
-      console.log("GET VANS ========");
+      vans.forEach(element => {
+        let van = new Van(
+          element.id,
+          element.nome,
+          element.cnpj,
+          element.bairro,
+          element.descricao,
+          element.foto
+          )
+        this.vans.push(van)
+      });
     });
+
   }
 
   ngOnInit() {
     this.getVans();
-    console.log("Array Vans Init vindo vazio");
-    console.log(this.vans);
-    this.loading = false;
+    this.results = this.vans;
+    console.log(this.results);
   }
 
 
