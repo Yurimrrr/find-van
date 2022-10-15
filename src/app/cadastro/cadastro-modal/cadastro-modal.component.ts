@@ -8,7 +8,32 @@ import { UsuarioVan } from 'src/app/entities/usuarioVan.model';
 import { Van } from 'src/app/entities/vans.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { UsuarioVanService } from 'src/app/services/usuarioVan.service';
+import { Directive, HostListener } from '@angular/core';//Validação campo number
+////////Validação campo number
+@Directive({
+  selector: '[appIntegerInput]'
+})
 
+export class IntegerInputDirective {
+
+  constructor() { }
+
+  @HostListener('keypress', ['$event'])
+  onInput(event: any) {
+    const pattern = /[0-9]/; // without ., for integer only
+    let inputChar = String.fromCharCode(event.which ? event.which : event.keyCode);
+
+    if (!pattern.test(inputChar)) {
+      // invalid character, prevent input
+      event.preventDefault();
+      return false;
+    }
+    return true;
+  }
+
+}
+
+////////////////
 @Component({
   selector: 'app-cadastro-modal',
   templateUrl: './cadastro-modal.component.html',
@@ -22,7 +47,8 @@ public van: Van = new Van();
 
 public endereco: Endereco = new Endereco();
 
-  type: boolean = true;
+
+  public type: boolean = true;
 
   constructor(
               private modalCtrl: ModalController,
@@ -75,9 +101,9 @@ public endereco: Endereco = new Endereco();
       this.usuarioVanServ.insertUsuarioVan(usuarioVan)
     }
   }
-
   confirm(type: boolean) {
     this.type = type;
     return this.modalCtrl.dismiss(this.type, 'confirm');
   }
 }
+
