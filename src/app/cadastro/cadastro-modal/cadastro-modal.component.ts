@@ -61,6 +61,7 @@ public endereco: Endereco = new Endereco();
   }
 
   cadastrar(){
+    this.modalCtrl.dismiss(this.type, 'confirm');
     //id temporario dps o banco gera
     if(this.type){
       this.usuario = {

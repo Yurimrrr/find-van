@@ -54,7 +54,7 @@ export class CadastroPage implements OnInit {
 
     if (role === 'confirm') {
       // tela inicial
-      this.route.navigate(['/inicio']);
+      this.route.navigate(['/login']);
       //enviar o usuario para o login.
       // this.message = `Hello, ${data}!`;
     }
