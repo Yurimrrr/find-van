@@ -164,6 +164,27 @@
         "foto": "https://img0.icarros.com/dbimg/imgmodelo/2/699_15.png"
       },
       "id": 12
+    },
+    {
+      "nome": "jose mauricio",
+      "senha": "123456",
+      "email": "jose@gmail.com",
+      "endereco": {
+        "rua": "testet",
+        "bairro": "teste",
+        "cidade": "BH",
+        "estado": "MG",
+        "pais": "BR"
+      },
+      "cpf": 1234561,
+      "van": {
+        "nome": "Jose mauricio van",
+        "cnpj": 123456,
+        "bairro": "teste de bairro",
+        "descricao": "teste",
+        "foto": "https://img0.icarros.com/dbimg/imgmodelo/2/699_15.png"
+      },
+      "id": 13
     }
   ],
   "vans": [
@@ -230,6 +251,14 @@
       "descricao": "atendo a faculdade fumec",
       "foto": "https://img0.icarros.com/dbimg/imgmodelo/2/699_15.png",
       "id": 9
+    },
+    {
+      "nome": "Jose mauricio van",
+      "cnpj": 123456,
+      "bairro": "teste de bairro",
+      "descricao": "teste",
+      "foto": "https://img0.icarros.com/dbimg/imgmodelo/2/699_15.png",
+      "id": 10
     }
   ]
 }

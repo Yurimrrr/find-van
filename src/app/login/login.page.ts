@@ -3,6 +3,7 @@ import { IonModal, ModalController } from '@ionic/angular';
 import { LoginModalComponent } from './login-modal/login-modal.component';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class LoginPage implements OnInit {
   constructor(
     private modalCtrl: ModalController, 
     private route: Router,
-    private alertController: AlertController) { }
+    private alertController: AlertController,
+    private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -59,10 +61,12 @@ export class LoginPage implements OnInit {
 
   checkCampos(){
     if(this.user != "" && this.password != ""){
-      this.openModal();
-    }else{
-      this.presentAlert();
+      this.authService.login(this.user, this.password);
+      return this.openModal();
     }
+
+    this.presentAlert();
+    
 
   }
 

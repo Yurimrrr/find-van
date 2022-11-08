@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Van } from '../entities/vans.model';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +24,7 @@ export class VanService {
   vans : Array<Van> = [];
 
   public getAllVan(): Observable<Van[]> {
-    return this.httpClient.get<Van[]>(this.url)
+    return this.httpClient.get<Van[]>(`${environment.backendApiUrl}/v1/vans`)
       .pipe(
         retry(2),
         catchError(this.handleError)
