@@ -16,7 +16,6 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string) {
-    console.log("entrou aqui")
     return this.http.post<AuthResponseDto>(`${environment.backendApiUrl}/v1/login`, {Email: username, Senha: password})
       .subscribe(result => {
           this.acessToken = result.data.token;
