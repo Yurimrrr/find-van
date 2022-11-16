@@ -7,9 +7,11 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
+  <form [formGroup]="formulario">
+  <div class="form-group">
   <ion-item>
                     <ion-label position="stacked"> Nome </ion-label>
-                    <ion-input type="text" placeholder="Insira seu Nome" [(ngModel)]="usuario.nome"></ion-input>
+                    <ion-input type="text" placeholder="Insira seu Nome"  [(ngModel)]="usuario.nome"></ion-input>
                     <ion-label position="stacked"> Email </ion-label>
                     <ion-input type="text" placeholder="Insira seu Email" [(ngModel)]="usuario.email"></ion-input>
                     <ion-label position="stacked"> Senha </ion-label>
@@ -91,6 +93,8 @@
                     </ion-row>
                     </ion-grid>
                 </ion-item>
+              </div>
+              </form>
 </ion-content>
 
 
