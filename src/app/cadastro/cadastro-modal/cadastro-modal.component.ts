@@ -5,7 +5,7 @@ import { Endereco } from 'src/app/entities/endereco.model';
 import { Usuario } from 'src/app/entities/usuario.model';
 import { Van } from 'src/app/entities/vans.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 
 import { Directive, HostListener } from '@angular/core';//Validação campo number
 ////////Validação campo number
@@ -50,6 +50,8 @@ public van: Van = new Van();
 
 public endereco: Endereco = new Endereco();
 
+
+
 name = new FormControl('');
 
 
@@ -62,12 +64,12 @@ name = new FormControl('');
               private usuarioServ: UsuarioService,
               private formBuilder: FormBuilder) { }
 
-  ngOnInit() {
+  ngOnInit():void {
     this.formulario = this.formBuilder.group({
-      nome: [null],
-      email: [null],
-      senha: [null],
-      cpf: [null],
+      nome: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      senha: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(15)])],
+      cpf: ['', Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11)])],
       cnpj: [null],
       celular: [null],
       bairro: [null],
@@ -78,9 +80,12 @@ name = new FormControl('');
       descricao: [null]
     });
 
-
-
+    
   }
+  async submit(){
+  }
+  
+  
 
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
