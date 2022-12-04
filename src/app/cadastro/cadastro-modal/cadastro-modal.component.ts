@@ -5,6 +5,7 @@ import { Endereco } from 'src/app/entities/endereco.model';
 import { Usuario } from 'src/app/entities/usuario.model';
 import { Van } from 'src/app/entities/vans.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 
 import { Directive, HostListener } from '@angular/core';//Validação campo number
 ////////Validação campo number
@@ -14,7 +15,9 @@ import { Directive, HostListener } from '@angular/core';//Validação campo numb
 
 export class IntegerInputDirective {
 
+
   constructor() { }
+
 
   @HostListener('keypress', ['$event'])
   onInput(event: any) {
@@ -39,11 +42,17 @@ export class IntegerInputDirective {
 })
 export class CadastroModalComponent implements OnInit {
 
+formulario: FormGroup;
+
 public usuario: Usuario = new Usuario();
 
 public van: Van = new Van();
 
 public endereco: Endereco = new Endereco();
+
+
+
+name = new FormControl('');
 
 
   public type: boolean = true;
@@ -52,9 +61,31 @@ public endereco: Endereco = new Endereco();
               private modalCtrl: ModalController,
               // private rotaAtiva: ActivatedRoute,
               // private rota: Router,
-              private usuarioServ: UsuarioService) { }
+              private usuarioServ: UsuarioService,
+              private formBuilder: FormBuilder) { }
 
-  ngOnInit() {}
+  ngOnInit():void {
+    this.formulario = this.formBuilder.group({
+      nome: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(100)])],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      senha: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(15)])],
+      cpf: ['', Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11)])],
+      cnpj: [null],
+      celular: [null],
+      bairro: [null],
+      rua: [null],
+      estado: [null],
+      cidade: [null],
+      pais: [null],
+      descricao: [null]
+    });
+
+    
+  }
+  async submit(){
+  }
+  
+  
 
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
