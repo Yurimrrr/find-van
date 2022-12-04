@@ -26,7 +26,7 @@
                     <ion-input type="text" placeholder="Bairro" [(ngModel)]="endereco.bairro"></ion-input>
 
                     <ion-label position="stacked"> Estado </ion-label>
-                    <ion-select placeholder="Estado" [(ngModel)]="endereco.estado" id="estado"> 
+                    <ion-select placeholder="Estado" [(ngModel)]="endereco.estado" id="estado">
                       <ion-select-option value="AC">Acre</ion-select-option>
                       <ion-select-option value="AL">Alagoas</ion-select-option>
                       <ion-select-option value="AP">Amapá</ion-select-option>
@@ -56,14 +56,14 @@
                       <ion-select-option value="TO">Tocantins</ion-select-option>
                     </ion-select>
 
-                    <ion-label position="stacked"> Cidade 
+                    <ion-label position="stacked"> Cidade
                     </ion-label>
                     <ion-select [(ngModel)]="endereco.cidade" placeholder="Cidade">
                     <ion-select-option value="BH">Belo Horizonte</ion-select-option>
                     <ion-select-option value="Dores">Dores do indai </ion-select-option>
                     </ion-select>
 
-                    
+
                     <ion-label position="stacked"> País </ion-label>
                     <ion-select [(ngModel)]="endereco.pais" placeholder="País">
                     <ion-select-option value="BR">Brasil</ion-select-option>
@@ -84,7 +84,8 @@
                       <ion-label position="stacked"> Descrição </ion-label>
                       <ion-input type="text" placeholder="Digite a descricao" [(ngModel)]="van.descricao"></ion-input>
                       <ion-label position="stacked"> Foto </ion-label>
-                      <ion-input type="text" placeholder="Insira url da foto(temporario)" [(ngModel)]="van.foto"></ion-input>
+                      <ion-button (click)="choosePhotos()">Tirar foto</ion-button>
+                      <!-- <ion-input type="text" placeholder="Insira url da foto(temporario)" [(ngModel)]="van.foto"></ion-input> -->
                     </div>
                     <ion-grid>
                       <ion-row class="ion-justify-content-center">

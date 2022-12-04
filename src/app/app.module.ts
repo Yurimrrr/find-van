@@ -8,6 +8,8 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenInterceptor } from './services/token.interceptor';
+import { WebView } from '@awesome-cordova-plugins/ionic-webview/ngx';
+import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,18 +19,21 @@ import { TokenInterceptor } from './services/token.interceptor';
     ReactiveFormsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule],
+    HttpClientModule,
+  ],
   providers: [
-    { 
-      provide: RouteReuseStrategy, 
-      useClass: IonicRouteStrategy 
-    }, 
+    WebView,
+    Camera,
+    {
+      provide: RouteReuseStrategy,
+      useClass: IonicRouteStrategy,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
-      multi: true
-    }
-],
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

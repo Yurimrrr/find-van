@@ -1,5 +1,10 @@
 {
   "name": "FindVan",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
+  },
   "type": "angular"
 }
